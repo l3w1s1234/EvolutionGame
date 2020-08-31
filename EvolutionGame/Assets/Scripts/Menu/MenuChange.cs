@@ -11,9 +11,11 @@ public static class MenuChange
         CreatureMenu,
         MainMenu
     }
-    static public bool changed = false;
-    static public Menu current;
-    static public Menu next;
+    static private bool changed = false;
+    static private Menu current;
+    static private Menu next;
+
+    public static Menu Current { get => current; set => current = value; }
 
     static public void init()
     {
@@ -26,4 +28,36 @@ public static class MenuChange
         changed = true;
         next = nextMenu;
     }
+
+    #region getters setters
+    public static void setCurrent(Menu menu)
+    {
+        current = menu;
+    }
+
+    public static void setNext(Menu menu)
+    {
+        next = menu;
+    }
+
+    public static  Menu getCurrent()
+    {
+        return current;
+    }
+
+    public static Menu getNext()
+    {
+        return next;
+    }
+
+    public static void setChanged(bool c)
+    {
+        changed = c;
+    }
+
+    public static bool getChanged()
+    {
+        return changed;
+    }
+    #endregion
 }

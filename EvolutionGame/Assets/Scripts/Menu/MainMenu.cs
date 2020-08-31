@@ -24,7 +24,7 @@ public class MainMenu : MonoBehaviour
         loadBtn.onClick.AddListener(Load);
         exitBtn.onClick.AddListener(Exit);
         settingsBtn.onClick.AddListener(Settings);
-        MenuChange.next = MenuChange.Menu.MainMenu;
+        MenuChange.ChangeMenu(MenuChange.Menu.MainMenu);
     }
 
     // Update is called once per frame
