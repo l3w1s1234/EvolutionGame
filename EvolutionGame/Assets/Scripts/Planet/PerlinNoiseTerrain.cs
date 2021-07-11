@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 
@@ -28,8 +29,8 @@ public class PerlinNoiseTerrain : MonoBehaviour
         if (PlanetInfo.info.landColors == null)
         {
             PlanetModifiers.init();
-
-            PlanetInfo.setInfo(PlanetModifiers.Planets["Earth Like"]);
+            var first = PlanetModifiers.Planets.First();
+            PlanetInfo.setInfo(PlanetModifiers.Planets[first.Key]);
         }
 
         waterIndex = Random.Range(0, PlanetInfo.info.waterColors.Count);

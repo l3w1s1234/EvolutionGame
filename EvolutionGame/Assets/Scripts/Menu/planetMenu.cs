@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using DAL;
 
 public class planetMenu : MonoBehaviour
 {
@@ -24,6 +25,11 @@ public class planetMenu : MonoBehaviour
         }
         
         planetDropDown = transform.Find("Planet_Dropdown").GetComponent<Dropdown>();
+        populateDropdown();
+        planetDropDown.onValueChanged.AddListener(delegate {
+            changePlanetType(planetDropDown);
+        });
+
 
         playGameBtn = transform.Find("Next_Button").GetComponent<Button>();
         genPlanetBtn = transform.Find("Refresh_Button").GetComponent<Button>();
@@ -42,10 +48,16 @@ public class planetMenu : MonoBehaviour
         pt = transform.Find("Planet_Preview").GetComponentInChildren<PerlinNoiseTerrain>();
         pb = transform.Find("Planet_Preview").GetComponentInChildren<PlanetBehaviour>();
 
-        planetDropDown.onValueChanged.AddListener(delegate {
-            changePlanetType(planetDropDown);
-        });
+        
 
+    }
+
+    private void populateDropdown()
+    {
+        var planetTypeDataAccess = new PlanetTypesDataAccess(CONSTANTS.GetConnection());
+        var planetTypes = planetTypeDataAccess.GetPlanetTypeNames();
+
+        planetDropDown.AddOptions(planetTypes);
     }
 
     public void Update()
@@ -55,27 +67,11 @@ public class planetMenu : MonoBehaviour
 
     void changePlanetType(Dropdown change)
     {
-        switch (change.value)
-        {
-            case (0):
-                PlanetInfo.setInfo(PlanetModifiers.Planets["Earth Like"]);
-                scaleSlider.value = PlanetInfo.info.planetScale;
-                pt.Regen();
-                pb.resetBehaviour();
-                break;
-            case (1):
-                PlanetInfo.setInfo(PlanetModifiers.Planets["Hot Planet"]);
-                scaleSlider.value = PlanetInfo.info.planetScale;
-                pt.Regen();
-                pb.resetBehaviour();
-                break;
-            case (2):
-                PlanetInfo.setInfo(PlanetModifiers.Planets["Cold Planet"]);
-                scaleSlider.value = PlanetInfo.info.planetScale;
-                pt.Regen();
-                pb.resetBehaviour();
-                break;
-        }
+
+        PlanetInfo.setInfo(PlanetModifiers.Planets[change.options[change.value].text]);
+        scaleSlider.value = PlanetInfo.info.planetScale;
+        pt.Regen();
+        pb.resetBehaviour();
     }
 
     public void GeneratePlanet()
