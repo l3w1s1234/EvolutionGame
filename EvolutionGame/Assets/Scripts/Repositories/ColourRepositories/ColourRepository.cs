@@ -5,7 +5,7 @@ using Entities;
 using System.Data;
 using Dapper;
 using System.Linq;
-
+using Mono.Data.Sqlite;
 
 namespace Repositories
 {

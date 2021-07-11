@@ -1,15 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using DAL;
 public static class PlanetModifiers
 {
 
     public static readonly Dictionary<string, Planet> Planets = new Dictionary<string, Planet>();
+    private static Dictionary<string, Color32> PlanetColours = new Dictionary<string, Color32>();
 
     //instantiate all planets
     public static void init()
     {
+        var colourDataAccess = new ColoursDataAccess(CONSTANTS.GetConnection());
+
+        PlanetColours = colourDataAccess.GetAllColours();
+        
+        
+
         //Earthlike
         //planet constraints
         Planet EarthLike = new Planet();
@@ -23,13 +30,13 @@ public static class PlanetModifiers
         EarthLike.landColors = new List<Color32>();
         EarthLike.waterColors = new List<Color32>();
         EarthLike.mountainColors = new List<Color32>();
-        EarthLike.landColors.Add(PlanetColors.green);
-        EarthLike.landColors.Add(PlanetColors.darkGreen);
-        EarthLike.mountainColors.Add(PlanetColors.white);
-        EarthLike.mountainColors.Add(PlanetColors.grey);
-        EarthLike.waterColors.Add(PlanetColors.blue);
-        EarthLike.waterColors.Add(PlanetColors.darkBlue);
-        EarthLike.waterColors.Add(PlanetColors.lightBlue);
+        EarthLike.landColors.Add(PlanetColours["Green"]);
+        EarthLike.landColors.Add(PlanetColours["DarkGreen"]);
+        EarthLike.mountainColors.Add(PlanetColours["White"]);
+        EarthLike.mountainColors.Add(PlanetColours["Grey"]);
+        EarthLike.waterColors.Add(PlanetColours["Blue"]);
+        EarthLike.waterColors.Add(PlanetColours["DarkBlue"]);
+        EarthLike.waterColors.Add(PlanetColours["LightBlue"]);
         Planets.Add(EarthLike.type, EarthLike);
 
 
@@ -45,15 +52,15 @@ public static class PlanetModifiers
         HotPlanet.landColors = new List<Color32>();
         HotPlanet.waterColors = new List<Color32>();
         HotPlanet.mountainColors = new List<Color32>();
-        HotPlanet.landColors.Add(PlanetColors.brown);
-        HotPlanet.landColors.Add(PlanetColors.darkRed);
-        HotPlanet.landColors.Add(PlanetColors.lightGrey);
-        HotPlanet.waterColors.Add(PlanetColors.red);
-        HotPlanet.waterColors.Add(PlanetColors.orange);
-        HotPlanet.waterColors.Add(PlanetColors.purple);
-        HotPlanet.mountainColors.Add(PlanetColors.grey);
-        HotPlanet.mountainColors.Add(PlanetColors.lightRed);
-        HotPlanet.mountainColors.Add(PlanetColors.yellow);
+        HotPlanet.landColors.Add(PlanetColours["Brown"]);
+        HotPlanet.landColors.Add(PlanetColours["DarkRed"]);
+        HotPlanet.landColors.Add(PlanetColours["LightGrey"]);
+        HotPlanet.waterColors.Add(PlanetColours["Red"]);
+        HotPlanet.waterColors.Add(PlanetColours["Orange"]);
+        HotPlanet.waterColors.Add(PlanetColours["Purple"]);
+        HotPlanet.mountainColors.Add(PlanetColours["Grey"]);
+        HotPlanet.mountainColors.Add(PlanetColours["LightRed"]);
+        HotPlanet.mountainColors.Add(PlanetColours["Yellow"]);
         Planets.Add(HotPlanet.type, HotPlanet);
 
         //ColdPlanet
@@ -68,45 +75,22 @@ public static class PlanetModifiers
         ColdPlanet.landColors = new List<Color32>();
         ColdPlanet.waterColors = new List<Color32>();
         ColdPlanet.mountainColors = new List<Color32>();
-        ColdPlanet.landColors.Add(PlanetColors.purple);
-        ColdPlanet.landColors.Add(PlanetColors.darkGreen);
-        ColdPlanet.landColors.Add(PlanetColors.grey);
-        ColdPlanet.landColors.Add(PlanetColors.white);
-        ColdPlanet.waterColors.Add(PlanetColors.pink);
-        ColdPlanet.waterColors.Add(PlanetColors.lightBlue);
-        ColdPlanet.waterColors.Add(PlanetColors.yellow);
-        ColdPlanet.mountainColors.Add(PlanetColors.darkBlue);
-        ColdPlanet.mountainColors.Add(PlanetColors.lightGrey);
-        ColdPlanet.mountainColors.Add(PlanetColors.pink);
-        ColdPlanet.mountainColors.Add(PlanetColors.lightBlue);
+        ColdPlanet.landColors.Add(PlanetColours["Purple"]);
+        ColdPlanet.landColors.Add(PlanetColours["DarkGreen"]);
+        ColdPlanet.landColors.Add(PlanetColours["Grey"]);
+        ColdPlanet.landColors.Add(PlanetColours["White"]);
+        ColdPlanet.waterColors.Add(PlanetColours["Pink"]);
+        ColdPlanet.waterColors.Add(PlanetColours["LightBlue"]);
+        ColdPlanet.waterColors.Add(PlanetColours["Yellow"]);
+        ColdPlanet.mountainColors.Add(PlanetColours["DarkBlue"]);
+        ColdPlanet.mountainColors.Add(PlanetColours["LightGrey"]);
+        ColdPlanet.mountainColors.Add(PlanetColours["Pink"]);
+        ColdPlanet.mountainColors.Add(PlanetColours["LightBlue"]);
         Planets.Add(ColdPlanet.type, ColdPlanet);
-
-
 
     }
 
 }
 
-//list of colors for planets
-public struct PlanetColors
-{
-    public static Color32 red = new Color32(255, 0, 0,1);
-    public static Color32 darkRed = new Color32(102, 0, 0, 1);
-    public static Color32 lightRed = new Color32(255, 102, 102, 1);
-    public static Color32 lightBlue = new Color32(102, 102, 255,1);
-    public static Color32 blue = new Color32(0, 0, 255,1);
-    public static Color32 darkBlue = new Color32(0, 0, 153,1);
-    public static Color32 green = new Color32(0, 255, 0,1);
-    public static Color32 darkGreen = new Color32(0, 153, 0,1);
-    public static Color32 white = new Color32(255, 255, 255,1);
-    public static Color32 yellow = new Color32(255,255,51,1);
-    public static Color32 grey = new Color32(128, 128, 128,1);
-    public static Color32 lightGrey = new Color32(192, 192, 192, 1);
-    public static Color32 purple = new Color32(153, 0, 153, 1);
-    public static Color32 orange = new Color32(255, 128, 0, 1);
-    public static Color32 pink = new Color32(255, 102, 178, 1);
-    public static Color32 brown = new Color32(102, 51, 0, 1);
 
-
-}
 
