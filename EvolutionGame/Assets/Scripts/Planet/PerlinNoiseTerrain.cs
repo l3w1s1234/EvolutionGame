@@ -29,7 +29,7 @@ public class PerlinNoiseTerrain : MonoBehaviour
         {
             PlanetModifiers.init();
 
-            PlanetInfo.setInfo(PlanetModifiers.Planets["EarthLike"]);
+            PlanetInfo.setInfo(PlanetModifiers.Planets["Earth Like"]);
         }
 
         waterIndex = Random.Range(0, PlanetInfo.info.waterColors.Count);

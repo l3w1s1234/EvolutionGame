@@ -41,6 +41,12 @@ namespace Repositories
             return _connection.Query<PlanetColours>(sql).SingleOrDefault();
         }
 
+        public List<PlanetColours> GetByPlanetTypeColourType(PlanetTypes pt,ColourTypes ct)
+        {
+            var sql = $@"Select * from PlanetColours where PlanetColours.PlanetTypeId = {pt.Id} and PlanetColours.ColourTypeId = {ct.Id}";
+            return _connection.Query<PlanetColours>(sql).ToList();
+        }
+
        public List<PlanetColours> GetByPlanetTypeId(int id)
         {
             var sql = $@"Select * from PlanetColours where PlanetColours.PlanetTypeId = {id}";
@@ -60,7 +66,7 @@ namespace Repositories
                 new
                 {
                     entity.PlanetTypeId,
-                    entity.ColoursId,
+                    entity.ColourId,
                     entity.ColourTypeId
                 });
         }

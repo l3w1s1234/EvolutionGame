@@ -14,6 +14,7 @@ namespace Entities
         public float PlanetScale { get; set; }
         public float PlanetDistance { get; set; }
         public float MinTemp { get; set; }
+        public float MidTemp { get; set; }
         public float MaxTemp { get; set; }
     }
 }

@@ -58,19 +58,19 @@ public class planetMenu : MonoBehaviour
         switch (change.value)
         {
             case (0):
-                PlanetInfo.setInfo(PlanetModifiers.Planets["EarthLike"]);
+                PlanetInfo.setInfo(PlanetModifiers.Planets["Earth Like"]);
                 scaleSlider.value = PlanetInfo.info.planetScale;
                 pt.Regen();
                 pb.resetBehaviour();
                 break;
             case (1):
-                PlanetInfo.setInfo(PlanetModifiers.Planets["Hot"]);
+                PlanetInfo.setInfo(PlanetModifiers.Planets["Hot Planet"]);
                 scaleSlider.value = PlanetInfo.info.planetScale;
                 pt.Regen();
                 pb.resetBehaviour();
                 break;
             case (2):
-                PlanetInfo.setInfo(PlanetModifiers.Planets["Cold"]);
+                PlanetInfo.setInfo(PlanetModifiers.Planets["Cold Planet"]);
                 scaleSlider.value = PlanetInfo.info.planetScale;
                 pt.Regen();
                 pb.resetBehaviour();

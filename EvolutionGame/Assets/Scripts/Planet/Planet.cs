@@ -13,7 +13,12 @@ public struct Planet
     public List<Color32> landColors;
     public List<Color32> mountainColors;
 
+    public float planetDistance;
     public float rotationSpeed;
     public float planetScale;
+
+    public float minTemp;
+    public float midTemp;
+    public float maxTemp;
 
 }

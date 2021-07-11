@@ -34,9 +34,12 @@ namespace DAL
             return colourDictionary;
         }
 
+        public List<ColourTypes> GetColourTypes()
+        {
+            var colourTypesRepo = new ColourTypesRepository(_connection);
+            return colourTypesRepo.GetAll();
+        }
 
-
-      
 
     }
 }

@@ -13,24 +13,11 @@ public static class PlanetInfo
     public static void setInfo(Planet i)
     {
         info = i;
+
         tempRange = new float[2];
 
-        //set the min and max temp of planet based on its type
-        switch(info.type)
-        {
-            case ("Hot"):
-                tempRange[0] = Random.Range(100f, 300f);
-                tempRange[1] = Random.Range(tempRange[0], 500f);
-                break;
-            case ("EarthLike"):
-                tempRange[0] = Random.Range(-30f, 40f);
-                tempRange[1] = Random.Range(tempRange[0], 70f);
-                break;
-            case ("Cold"):
-                tempRange[0] = Random.Range(-300f, -100f);
-                tempRange[1] = Random.Range(tempRange[0], 0f);
-                break;
-        }
+        tempRange[0] = Random.Range(info.minTemp, info.midTemp);
+        tempRange[1] = Random.Range(tempRange[0], info.maxTemp);
 
         //round to 2 decimal places
         tempRange[0] = (float)System.Math.Round(tempRange[0], 2);
